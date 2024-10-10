@@ -9,9 +9,9 @@
 	Donate link: https://monzillamedia.com/donate.html
 	Contributors: specialk
 	Requires at least: 4.6
-	Tested up to: 6.6
-	Stable tag: 20240621
-	Version:    20240621
+	Tested up to: 6.7
+	Stable tag: 20241010
+	Version:    20241010
 	Requires PHP: 5.6.20
 	Text Domain: simple-blog-stats
 	Domain Path: /languages
@@ -40,7 +40,7 @@ if (!defined('ABSPATH')) die();
 
 
 $sbs_wp_vers = '4.6';
-$sbs_version = '20240621';
+$sbs_version = '20241010';
 $sbs_plugin  = esc_html__('Simple Blog Stats', 'simple-blog-stats');
 $sbs_options = get_option('sbs_options');
 $sbs_path    = plugin_basename(__FILE__); // simple-blog-stats/simple-blog-stats.php
@@ -209,15 +209,18 @@ add_shortcode('sbs_posts', 'sbs_posts');
 function sbs_posts_alt($attr, $content = null) {
 	
 	extract(shortcode_atts(array(
-		'type'   => 'post',
-		'status' => 'publish',
+		
+		'type'          => 'post',
+		'status'        => 'publish',
+		'number_format' => ','
+		
 	), $attr));
 	
 	$property = "$status";
 	
 	$total = wp_count_posts($type)->{$property};
 	
-	return number_format($total);
+	return number_format($total, 0, '.', $number_format);
 	
 }
 add_shortcode('sbs_posts_alt', 'sbs_posts_alt');
@@ -553,9 +556,20 @@ add_shortcode('sbs_cats', 'sbs_cats');
 
 
 // number of tags
-function sbs_tags() {
+function sbs_tags($attr, $content = null) {
+	
+	extract(shortcode_atts(array(
+		
+		'number_format' => ','
+		
+	), $attr));
+	
 	global $sbs_options;
-	return $sbs_options['count_tags_before'] . number_format(wp_count_terms('post_tag')) . $sbs_options['count_tags_after'];
+	
+	$count = wp_count_terms('post_tag');
+	
+	return $sbs_options['count_tags_before'] . number_format($count, 0, '.', $number_format) . $sbs_options['count_tags_after'];
+	
 }
 add_shortcode('sbs_tags', 'sbs_tags');
 
@@ -1430,6 +1444,9 @@ function sbs_render_form() {
 		
 		.wp-admin .notice code { line-height: 1; font-size: 12px; }
 		.wp-admin .sbs-dismiss-notice { float: right; }
+		
+		#mm-plugin-options .notice-margin p { margin: 10px 0; }
+		
 		#mm-plugin-options .notice-custom p { margin-left: 0; }
 		
 		.wp-admin .notice-custom { background-image: url(<?php echo plugins_url('/simple-blog-stats/images/sun-icon.png'); ?>); background-repeat: no-repeat; background-position: left 5px center; background-size: 60px 40px; }
@@ -1997,12 +2014,14 @@ function simple_blog_stats_admin_notice() {
 			
 			?>
 			
-			<div class="notice notice-success notice-custom">
+			<div class="notice notice-success notice-margin">
 				<p>
-					<strong><?php esc_html_e('Pro Plugin Sale!', 'simple-blog-stats'); ?></strong> 
-					<?php esc_html_e('Buy one get one FREE with code', 'simple-blog-stats'); ?> <code>BOGO24</code>, 
-					<?php esc_html_e('or take 30% off with code', 'simple-blog-stats'); ?> <code>SUPER24</code> 
-					⭐ <a class="notice-link" target="_blank" rel="noopener noreferrer" href="https://plugin-planet.com/super-summer-sale/"><?php esc_html_e('Get&nbsp;plugins&nbsp;&raquo;', 'simple-blog-stats'); ?></a> 
+					<strong><?php esc_html_e('Fall Sale!', 'simple-blog-stats'); ?></strong> 
+					<?php esc_html_e('Take 25% OFF any of our', 'simple-blog-stats'); ?> 
+					<a target="_blank" rel="noopener noreferrer" href="https://plugin-planet.com/"><?php esc_html_e('Pro WordPress plugins', 'simple-blog-stats'); ?></a> 
+					<?php esc_html_e('and', 'simple-blog-stats'); ?> 
+					<a target="_blank" rel="noopener noreferrer" href="https://books.perishablepress.com/"><?php esc_html_e('books', 'simple-blog-stats'); ?></a>. 
+					<?php esc_html_e('Apply code', 'simple-blog-stats'); ?> <code>FALL2024</code> <?php esc_html_e('at checkout. Sale ends 12/21/24.', 'simple-blog-stats'); ?> 
 					<?php echo simple_blog_stats_dismiss_notice_link(); ?>
 				</p>
 			</div>
@@ -2087,7 +2106,7 @@ function simple_blog_stats_dismiss_notice_link() {
 
 function simple_blog_stats_check_date_expired() {
 	
-	$expires = apply_filters('simple_blog_stats_check_date_expired', '2024-09-22');
+	$expires = apply_filters('simple_blog_stats_check_date_expired', '2024-12-21');
 	
 	return (new DateTime() > new DateTime($expires)) ? true : false;
 	

@@ -9,9 +9,9 @@ Author URI: https://plugin-planet.com/
 Donate link: https://monzillamedia.com/donate.html
 Contributors: specialk
 Requires at least: 4.6
-Tested up to: 6.6
-Stable tag: 20240621
-Version:    20240621
+Tested up to: 6.7
+Stable tag: 20241010
+Version:    20241010
 Requires PHP: 5.6.20
 Text Domain: simple-blog-stats
 Domain Path: /languages
@@ -135,7 +135,7 @@ Visit the plugin settings page for a complete list of shortcodes. There you may 
 	[sbs_approved]             = approved comments *
 	[sbs_users]                = number of users
 	[sbs_cats]                 = number of categories
-	[sbs_tags]                 = number of tags
+	[sbs_tags]                 = number of tags *
 	[sbs_tax tax="tax_name"]   = number of taxonomy terms
 	[sbs_tax_posts ...]        = number of posts for tax term(s) *
 	[sbs_word_count]           = number of words in post *
@@ -187,11 +187,11 @@ More information about the possible values for these attributes:
 
 **[sbs_posts_alt]**
 
-The `[sbs_posts_alt]` shortcode is for sites with __LOTS__ of posts (like 10,000+). It is not as flexible as `[sbs_posts]`, but does provide a couple of attributes:
+The `[sbs_posts_alt]` shortcode is for sites with __LOTS__ of posts (like 10,000+). It is not as flexible as `[sbs_posts]`, but does provide several attributes:
 
-	[sbs_posts_alt type="page" status="draft"]
+	[sbs_posts_alt type="page" status="draft" number_format=","]
 
-You can change the `type` and `status` of the posts that should be counted. Again, this shortcode should be used only for sites with extreme numbers of posts.
+You can change the `type` and `status` of the posts that should be counted. The `number_format` attribute determines the separator for large numbers. Again, this shortcode should be used only for sites with extreme numbers of posts.
 
 
 **[sbs_updated]**
@@ -218,9 +218,18 @@ You can change the category ID to display number of comments for any category.
 
 **[sbs_approved]**
 
-By default, the `[sbs_approved]` shortcode displays the total number of comments that have been approved/published on your site. This shortcode provides an optional attribute to specify the number format:
+By default, the `[sbs_approved]` shortcode displays the total number of comments that have been approved/published. This shortcode provides an optional attribute to specify the number format:
 
 	[sbs_approved number_format=","]
+
+You can change the number format to whatever makes sense for your site.
+
+
+**[sbs_tags]**
+
+By default, the `[sbs_tags]` shortcode displays the total number of tags that have been created. This shortcode provides an optional attribute to specify the number format:
+
+	[sbs_tags number_format=","]
 
 You can change the number format to whatever makes sense for your site.
 
@@ -451,14 +460,13 @@ Send any questions or feedback via my [contact form](https://plugin-planet.com/s
 If you like Simple Blog Stats, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/simple-blog-stats/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
 
-**20240621**
+**20241010**
 
-* Fixes bug with `dismiss_notice_link`
-* Moves plugin icon file to `images` directory
+* Adds `number_format` to `[sbs_tags]`
+* Adds `number_format` to `[sbs_posts_alt]`
 * Updates plugin settings page
 * Updates default translation template
-* Improves plugin readme.txt/docs
-* Tests on WordPress 6.6 (beta)
+* Tests on WordPress 6.7 (beta)
 
 
 Full changelog @ [https://plugin-planet.com/wp/changelog/simple-blog-stats.txt](https://plugin-planet.com/wp/changelog/simple-blog-stats.txt)
