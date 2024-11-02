@@ -10,8 +10,8 @@
 	Contributors: specialk
 	Requires at least: 4.6
 	Tested up to: 6.7
-	Stable tag: 20241010
-	Version:    20241010
+	Stable tag: 20241102
+	Version:    20241102
 	Requires PHP: 5.6.20
 	Text Domain: simple-blog-stats
 	Domain Path: /languages
@@ -40,8 +40,8 @@ if (!defined('ABSPATH')) die();
 
 
 $sbs_wp_vers = '4.6';
-$sbs_version = '20241010';
-$sbs_plugin  = esc_html__('Simple Blog Stats', 'simple-blog-stats');
+$sbs_version = '20241102';
+$sbs_plugin  = 'Simple Blog Stats';
 $sbs_options = get_option('sbs_options');
 $sbs_path    = plugin_basename(__FILE__); // simple-blog-stats/simple-blog-stats.php
 $sbs_homeurl = 'https://perishablepress.com/simple-blog-stats/';
