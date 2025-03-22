@@ -8,10 +8,10 @@ Author: Jeff Starr
 Author URI: https://plugin-planet.com/
 Donate link: https://monzillamedia.com/donate.html
 Contributors: specialk
-Requires at least: 4.6
-Tested up to: 6.7
-Stable tag: 20241102
-Version:    20241102
+Requires at least: 4.7
+Tested up to: 6.8
+Stable tag: 20250322
+Version:    20250322
 Requires PHP: 5.6.20
 Text Domain: simple-blog-stats
 Domain Path: /languages
@@ -79,7 +79,7 @@ __NEW!__ Display number of words in any custom field
 
 This plugin does not collect or store any user data. It does not set any cookies, and it does not connect to any third-party locations. Thus, this plugin does not affect user privacy in any way.
 
-Simple Blog Stats is developed and maintained by [Jeff Starr](https://twitter.com/perishable), 15-year [WordPress developer](https://plugin-planet.com/) and [book author](https://books.perishablepress.com/).
+Simple Blog Stats is developed and maintained by [Jeff Starr](https://x.com/perishable), 15-year [WordPress developer](https://plugin-planet.com/) and [book author](https://books.perishablepress.com/).
 
 
 **Support development**
@@ -98,6 +98,7 @@ And/or purchase one of my premium WordPress plugins:
 * [Blackhole Pro](https://plugin-planet.com/blackhole-pro/) - Automatically block bad bots
 * [Banhammer Pro](https://plugin-planet.com/banhammer-pro/) - Monitor traffic and ban the bad guys
 * [GA Google Analytics Pro](https://plugin-planet.com/ga-google-analytics-pro/) - Connect WordPress to Google Analytics
+* [Head Meta Pro](https://plugin-planet.com/head-meta-pro/) - Ultimate Meta Tags for WordPress
 * [Simple Ajax Chat Pro](https://plugin-planet.com/simple-ajax-chat-pro/) - Unlimited chat rooms
 * [USP Pro](https://plugin-planet.com/usp-pro/) - Unlimited front-end forms
 
@@ -460,10 +461,14 @@ Send any questions or feedback via my [contact form](https://plugin-planet.com/s
 If you like Simple Blog Stats, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/simple-blog-stats/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
 
-**20241102**
+**20250322**
 
-* Fixes bug with textdomain loading
-* Tests on WordPress 6.7
+* Removes `sbs_i18n_init()` function
+* Adds uninstall option `simple-blog-stats-dismiss-notice`
+* Bumps minimum required WP version
+* Updates plugin settings page
+* Generates new language template
+* Tests on WordPress 6.8
 
 
 Full changelog @ [https://plugin-planet.com/wp/changelog/simple-blog-stats.txt](https://plugin-planet.com/wp/changelog/simple-blog-stats.txt)

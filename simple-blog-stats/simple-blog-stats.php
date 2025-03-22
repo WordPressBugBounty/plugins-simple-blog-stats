@@ -8,10 +8,10 @@
 	Author URI: https://plugin-planet.com/
 	Donate link: https://monzillamedia.com/donate.html
 	Contributors: specialk
-	Requires at least: 4.6
-	Tested up to: 6.7
-	Stable tag: 20241102
-	Version:    20241102
+	Requires at least: 4.7
+	Tested up to: 6.8
+	Stable tag: 20250322
+	Version:    20250322
 	Requires PHP: 5.6.20
 	Text Domain: simple-blog-stats
 	Domain Path: /languages
@@ -32,31 +32,21 @@
 	You should have received a copy of the GNU General Public License
 	with this program. If not, visit: https://www.gnu.org/licenses/
 	
-	Copyright 2024 Monzilla Media. All rights reserved.
+	Copyright 2025 Monzilla Media. All rights reserved.
 */
 
 if (!defined('ABSPATH')) die();
 
 
 
-$sbs_wp_vers = '4.6';
-$sbs_version = '20241102';
+$sbs_wp_vers = '4.7';
+$sbs_version = '20250322';
 $sbs_plugin  = 'Simple Blog Stats';
 $sbs_options = get_option('sbs_options');
 $sbs_path    = plugin_basename(__FILE__); // simple-blog-stats/simple-blog-stats.php
 $sbs_homeurl = 'https://perishablepress.com/simple-blog-stats/';
 
 require_once('stats-functions.php');
-
-function sbs_i18n_init() {
-	
-	global $sbs_path;
-	
-	load_plugin_textdomain('simple-blog-stats', false, dirname($sbs_path) .'/languages/');
-	
-}
-add_action('init', 'sbs_i18n_init');
-
 
 
 function sbs_require_wp_version() {
@@ -1962,7 +1952,7 @@ function sbs_render_form() {
 			
 			<div id="mm-credit-info">
 				<a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url($sbs_homeurl); ?>" title="<?php esc_attr_e('Plugin Homepage', 'simple-blog-stats'); ?>"><?php echo esc_html($sbs_plugin); ?></a> <?php esc_html_e('by', 'simple-blog-stats'); ?> 
-				<a target="_blank" rel="noopener noreferrer" href="https://twitter.com/perishable" title="<?php esc_attr_e('Jeff Starr on Twitter', 'simple-blog-stats'); ?>">Jeff Starr</a> @ 
+				<a target="_blank" rel="noopener noreferrer" href="https://x.com/perishable" title="<?php esc_attr_e('Jeff Starr on X (Twitter)', 'simple-blog-stats'); ?>">Jeff Starr</a> @ 
 				<a target="_blank" rel="noopener noreferrer" href="https://monzillamedia.com/" title="<?php esc_attr_e('Obsessive Web Design &amp; Development', 'simple-blog-stats'); ?>">Monzilla Media</a>
 			</div>
 			
@@ -2014,14 +2004,14 @@ function simple_blog_stats_admin_notice() {
 			
 			?>
 			
-			<div class="notice notice-success notice-margin">
+			<div class="notice notice-success notice-margin notice-custom">
 				<p>
-					<strong><?php esc_html_e('Fall Sale!', 'simple-blog-stats'); ?></strong> 
-					<?php esc_html_e('Take 25% OFF any of our', 'simple-blog-stats'); ?> 
+					<strong><?php esc_html_e('Spring Sale!', 'simple-blog-stats'); ?></strong> 
+					<?php esc_html_e('Take 30% OFF any of our', 'simple-blog-stats'); ?> 
 					<a target="_blank" rel="noopener noreferrer" href="https://plugin-planet.com/"><?php esc_html_e('Pro WordPress plugins', 'simple-blog-stats'); ?></a> 
 					<?php esc_html_e('and', 'simple-blog-stats'); ?> 
 					<a target="_blank" rel="noopener noreferrer" href="https://books.perishablepress.com/"><?php esc_html_e('books', 'simple-blog-stats'); ?></a>. 
-					<?php esc_html_e('Apply code', 'simple-blog-stats'); ?> <code>FALL2024</code> <?php esc_html_e('at checkout. Sale ends 12/21/24.', 'simple-blog-stats'); ?> 
+					<?php esc_html_e('Apply code', 'simple-blog-stats'); ?> <code>SPRING2025</code> <?php esc_html_e('at checkout. Sale ends 6/25/2025.', 'simple-blog-stats'); ?> 
 					<?php echo simple_blog_stats_dismiss_notice_link(); ?>
 				</p>
 			</div>
@@ -2106,7 +2096,7 @@ function simple_blog_stats_dismiss_notice_link() {
 
 function simple_blog_stats_check_date_expired() {
 	
-	$expires = apply_filters('simple_blog_stats_check_date_expired', '2024-12-21');
+	$expires = apply_filters('simple_blog_stats_check_date_expired', '2025-06-25');
 	
 	return (new DateTime() > new DateTime($expires)) ? true : false;
 	
