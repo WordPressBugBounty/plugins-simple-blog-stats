@@ -10,8 +10,8 @@ Donate link: https://monzillamedia.com/donate.html
 Contributors: specialk
 Requires at least: 4.7
 Tested up to: 6.8
-Stable tag: 20250322
-Version:    20250322
+Stable tag: 20250416
+Version:    20250416
 Requires PHP: 5.6.20
 Text Domain: simple-blog-stats
 Domain Path: /languages
@@ -460,6 +460,10 @@ Send any questions or feedback via my [contact form](https://plugin-planet.com/s
 
 If you like Simple Blog Stats, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/simple-blog-stats/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
+
+**20250416**
+
+* Improves sanitization for `txt` attribute for `[sbs_roles]`
 
 **20250322**
 

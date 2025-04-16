@@ -10,8 +10,8 @@
 	Contributors: specialk
 	Requires at least: 4.7
 	Tested up to: 6.8
-	Stable tag: 20250322
-	Version:    20250322
+	Stable tag: 20250416
+	Version:    20250416
 	Requires PHP: 5.6.20
 	Text Domain: simple-blog-stats
 	Domain Path: /languages
@@ -40,7 +40,7 @@ if (!defined('ABSPATH')) die();
 
 
 $sbs_wp_vers = '4.7';
-$sbs_version = '20250322';
+$sbs_version = '20250416';
 $sbs_plugin  = 'Simple Blog Stats';
 $sbs_options = get_option('sbs_options');
 $sbs_path    = plugin_basename(__FILE__); // simple-blog-stats/simple-blog-stats.php
@@ -479,6 +479,8 @@ function sbs_roles($attr, $content = null) {
 		'role' => 'all',
 		'txt'  => '',
 	), $attr));
+	
+	$txt = esc_html($txt);
 	
 	$count_users = count_users();
 	
