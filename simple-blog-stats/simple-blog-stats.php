@@ -10,8 +10,8 @@
 	Contributors: specialk
 	Requires at least: 4.7
 	Tested up to: 6.8
-	Stable tag: 20250416
-	Version:    20250416
+	Stable tag: 20250423
+	Version:    20250423
 	Requires PHP: 5.6.20
 	Text Domain: simple-blog-stats
 	Domain Path: /languages
@@ -40,7 +40,7 @@ if (!defined('ABSPATH')) die();
 
 
 $sbs_wp_vers = '4.7';
-$sbs_version = '20250416';
+$sbs_version = '20250423';
 $sbs_plugin  = 'Simple Blog Stats';
 $sbs_options = get_option('sbs_options');
 $sbs_path    = plugin_basename(__FILE__); // simple-blog-stats/simple-blog-stats.php
@@ -947,6 +947,8 @@ function sbs_cpt_count($atts) {
 		'number_format' => ','
 	), $atts));
 	
+	$txt = esc_html($txt);
+	
 	$post = get_post_type_object($cpt);
 	
 	$name = isset($post->labels->name) ? $post->labels->name : null;
@@ -1011,6 +1013,8 @@ function sbs_media_count($atts) {
 		'type' => 'image',
 		'txt' => '',
 	), $atts));
+	
+	$txt = esc_html($txt);
 	
 	$name = $txt ? ' '. $txt : '';
 	
