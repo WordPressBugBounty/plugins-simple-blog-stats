@@ -9,9 +9,9 @@ Author URI: https://plugin-planet.com/
 Donate link: https://monzillamedia.com/donate.html
 Contributors: specialk
 Requires at least: 4.7
-Tested up to: 6.8
-Stable tag: 20250423
-Version:    20250423
+Tested up to: 6.9
+Stable tag: 20260130
+Version:    20260130
 Requires PHP: 5.6.20
 Text Domain: simple-blog-stats
 Domain Path: /languages
@@ -23,7 +23,9 @@ Displays a wealth of useful statistics about your site. Display total number of 
 
 == Description ==
 
-[Simple Blog Stats](https://perishablepress.com/simple-blog-stats/) (SBS) provides shortcodes and tags to display site stats in posts, pages, and anywhere in your theme.
+[Simple Blog Stats](https://perishablepress.com/simple-blog-stats/) (SBS) provides shortcodes and tags to display site statistics in posts, pages, and anywhere in your theme.
+
+Displays a wealth of useful statistics about your site. Display total number of posts, pages, categories, tags, and much more.
 
 
 **Display Statistics**
@@ -45,8 +47,7 @@ Displays a wealth of useful statistics about your site. Display total number of 
 * Display list of counts for all Custom Post Types
 * Display current number of logged-in users
 * Display number of logged-in users via Dashboard widget
-
-__NEW!__ Display number of words in any custom field
+* Display number of words in any custom field
 
 
 **Plugin Features**
@@ -72,7 +73,6 @@ __NEW!__ Display number of words in any custom field
 * Display number of users per role (configurable)
 * Display all blog stats in a nicely formatted list
 * Configure all shortcodes via the plugin settings
-* Eat a bowl of ice cream :)
 
 
 **Privacy**
@@ -94,7 +94,7 @@ I develop and maintain this free plugin with love for the WordPress community. T
 
 And/or purchase one of my premium WordPress plugins:
 
-* [BBQ Pro](https://plugin-planet.com/bbq-pro/) - Super fast WordPress firewall
+* [BBQ Pro](https://plugin-planet.com/bbq-pro/) - Blazing fast WordPress firewall
 * [Blackhole Pro](https://plugin-planet.com/blackhole-pro/) - Automatically block bad bots
 * [Banhammer Pro](https://plugin-planet.com/banhammer-pro/) - Monitor traffic and ban the bad guys
 * [GA Google Analytics Pro](https://plugin-planet.com/ga-google-analytics-pro/) - Connect WordPress to Google Analytics
@@ -113,7 +113,7 @@ Links, tweets and likes also appreciated. Thank you! :)
 1. Upload the plugin to your blog and activate
 2. Visit the settings to configure your options
 
-[More info on installing WP plugins](https://wordpress.org/support/article/managing-plugins/#installing-plugins)
+[More info on installing WP plugins](https://wordpress.org/documentation/article/manage-plugins/#installing-plugins-1)
 
 
 
@@ -248,8 +248,9 @@ Then change the attribute values to match your taxonomy, terms, and post type, r
 
 The `[sbs_word_count]` shortcode displays the number of words in post content. By default it displays number of words in the current post. Or you can specify any post ID:
 
-	[sbs_word_count]         // displays word count of current post
-	[sbs_word_count id="1"]  // displays word count of post with ID = 1
+	[sbs_word_count]                   // displays word count of current post
+	[sbs_word_count id="1"]            // displays word count of post with ID = 1
+	[sbs_word_count number_format=","] // displays word count with comma separator
 
 To display the word count for __all posts__ (any post type), use the shortcode `[sbs_word_count_all]`. Check the FAQs to customize the post type for this shortcode.
 
@@ -339,12 +340,6 @@ If you like Simple Blog Stats, please take a moment to [give a 5-star rating](ht
 
 
 
-### Upgrades ###
-
-To upgrade SBS, remove the old version and replace with the new version. Or just click "Update" from the Plugins screen and let WordPress do it for you automatically.
-
-
-
 ### Restore Default Options ###
 
 To restore default plugin options, either uninstall/reinstall the plugin, or visit the plugin settings &gt; Restore Default Options.
@@ -353,15 +348,13 @@ To restore default plugin options, either uninstall/reinstall the plugin, or vis
 
 ### Uninstalling ###
 
-Simple Blog Stats cleans up after itself. All plugin settings will be removed from your database when the plugin is uninstalled via the Plugins screen. Any shortcodes that you have added to your posts and pages will __not__ be removed. Likewise any template tags that have been added to your theme template will __not__ be removed.
+This plugin cleans up after itself. All plugin settings will be removed from the WordPress database when the plugin is deleted via the WP Plugins screen. Note: any shortcodes that you have added to your posts and pages will __not__ be removed. Likewise any template tags that have been added to your theme template will __not__ be removed.
 
 
 
 == Upgrade Notice ==
 
-To upgrade SBS, remove the old version and replace with the new version. Or just click "Update" from the Plugins screen and let WordPress do it for you automatically.
-
-__Note:__ uninstalling the plugin from the WP Plugins screen results in the removal of all settings from the WP database. 
+Visit the WordPress Plugins screen, locate the plugin, and click "Update" :)
 
 
 
@@ -415,7 +408,7 @@ You can edit the return array with whatever post types are required.
 
 **How to change the separator for numbers?**
 
-Currently the plugin does not provide a way to change from dots to commas for numerical values. For a simple JavaScript workaround, check out [this post](https://wordpress.org/support/topic/dots-instead-of-comma/).
+Many of the plugin's shortcodes provide an attribute to specify the separator used for numbers (see documentation under the [Installation tab](https://wordpress.org/plugins/simple-blog-stats/#installation)). For the shortcodes that do not yet provide an attribute, it is possible to do it with a bit of JavaScript, check out [this post](https://wordpress.org/support/topic/dots-instead-of-comma/).
 
 
 **How to remove commas from the media count?**
@@ -461,23 +454,13 @@ Send any questions or feedback via my [contact form](https://plugin-planet.com/s
 If you like Simple Blog Stats, please take a moment to [give a 5-star rating](https://wordpress.org/support/plugin/simple-blog-stats/reviews/?rate=5#new-post). It helps to keep development and support going strong. Thank you!
 
 
-**20250423**
+**20260130**
 
-* Improves sanitization for `txt` attribute for `[sbs_cpt_count]`
-* Improves sanitization for `txt` attribute for `[sbs_media_count]`
-
-**20250416**
-
-* Improves sanitization for `txt` attribute for `[sbs_roles]`
-
-**20250322**
-
-* Removes `sbs_i18n_init()` function
-* Adds uninstall option `simple-blog-stats-dismiss-notice`
-* Bumps minimum required WP version
 * Updates plugin settings page
+* Improves readme.txt documentation
 * Generates new language template
-* Tests on WordPress 6.8
+* Tests on PHP 8.4 and 8.5
+* Tests on WordPress 6.9
 
 
 Full changelog @ [https://plugin-planet.com/wp/changelog/simple-blog-stats.txt](https://plugin-planet.com/wp/changelog/simple-blog-stats.txt)
