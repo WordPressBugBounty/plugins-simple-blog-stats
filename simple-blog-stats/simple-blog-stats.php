@@ -9,9 +9,9 @@
 	Donate link: https://monzillamedia.com/donate.html
 	Contributors: specialk
 	Requires at least: 4.7
-	Tested up to: 6.9
-	Stable tag: 20260130
-	Version:    20260130
+	Tested up to: 7.0
+	Stable tag: 20260418
+	Version:    20260418
 	Requires PHP: 5.6.20
 	Text Domain: simple-blog-stats
 	Domain Path: /languages
@@ -38,7 +38,7 @@ if (!defined('ABSPATH')) die();
 
 
 $sbs_wp_vers = '4.7';
-$sbs_version = '20260130';
+$sbs_version = '20260418';
 $sbs_plugin  = 'Simple Blog Stats';
 $sbs_options = get_option('sbs_options');
 $sbs_path    = plugin_basename(__FILE__); // simple-blog-stats/simple-blog-stats.php
@@ -71,9 +71,11 @@ function sbs_require_wp_version() {
 				
 				deactivate_plugins($sbs_path);
 				
-				$msg =  '<strong>' . $sbs_plugin . '</strong> ' . esc_html__('requires WordPress ', 'simple-blog-stats') . $sbs_wp_vers . esc_html__(' or higher, and has been deactivated!', 'simple-blog-stats') . '<br />';
-				
-				$msg .= esc_html__('Please return to the', 'simple-blog-stats') . ' <a href="' . admin_url() . '">' . esc_html__('WordPress Admin area', 'simple-blog-stats') . '</a> ' . esc_html__('to upgrade WordPress and try again.', 'simple-blog-stats');
+				$msg  = '<strong>'. $sbs_plugin .'</strong> '. esc_html__('requires WordPress ', 'simple-blog-stats') . $sbs_wp_vers;
+				$msg .= esc_html__(' or higher, and has been deactivated! ', 'simple-blog-stats');
+				$msg .= esc_html__('Please return to the', 'simple-blog-stats') .' <a href="'. admin_url('plugins.php') .'">';
+				$msg .= esc_html__('WordPress Admin area', 'simple-blog-stats') .'</a> ';
+				$msg .= esc_html__('to upgrade WordPress and try again.', 'simple-blog-stats');
 				
 				wp_die($msg);
 				
@@ -1238,6 +1240,7 @@ add_filter('plugin_row_meta', 'add_sbs_links', 10, 2);
 
 function sbs_delete_plugin_options() {
 	delete_option('sbs_options');
+	delete_option('simple-blog-stats-dismiss-notice');
 }
 if (isset($sbs_options['default_options']) && $sbs_options['default_options'] == 1) {
 	register_uninstall_hook (__FILE__, 'sbs_delete_plugin_options');
@@ -2030,12 +2033,12 @@ function simple_blog_stats_admin_notice() {
 			
 			<div class="notice notice-success notice-lh">
 				<p>
-					<strong><?php esc_html_e('❄️ Winter Sale!', 'simple-blog-stats'); ?></strong> 
-					<?php esc_html_e('Take 20% OFF any of our', 'simple-blog-stats'); ?> 
+					<strong><?php esc_html_e('🌼 Spring Sale!', 'simple-blog-stats'); ?></strong> 
+					<?php esc_html_e('Take 30% OFF any of our', 'simple-blog-stats'); ?> 
 					<a target="_blank" rel="noopener noreferrer" href="https://plugin-planet.com/"><?php esc_html_e('Pro WordPress plugins', 'simple-blog-stats'); ?></a> 
 					<?php esc_html_e('and', 'simple-blog-stats'); ?> 
 					<a target="_blank" rel="noopener noreferrer" href="https://books.perishablepress.com/"><?php esc_html_e('books', 'simple-blog-stats'); ?></a>. 
-					<?php esc_html_e('Apply code', 'simple-blog-stats'); ?> <code>WINTER20</code> <?php esc_html_e('at checkout. Sale ends 3/28/2026.', 'simple-blog-stats'); ?> 
+					<?php esc_html_e('Apply code', 'simple-blog-stats'); ?> <code>SPRING30</code> <?php esc_html_e('at checkout. Sale ends 6/28/2026.', 'simple-blog-stats'); ?> 
 					<?php echo simple_blog_stats_dismiss_notice_link(); ?>
 				</p>
 			</div>
@@ -2120,7 +2123,7 @@ function simple_blog_stats_dismiss_notice_link() {
 
 function simple_blog_stats_check_date_expired() {
 	
-	$expires = apply_filters('simple_blog_stats_check_date_expired', '2026-03-28');
+	$expires = apply_filters('simple_blog_stats_check_date_expired', '2026-06-28');
 	
 	return (new DateTime() > new DateTime($expires)) ? true : false;
 	
